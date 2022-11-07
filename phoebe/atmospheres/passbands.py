@@ -1762,6 +1762,7 @@ class Passband:
             intensities /= ldint.reshape(-1, 1)
 
         elif atm == 'extern_planckint' and 'extern_planckint:Inorm' in self.content:
+            req = ndpolator.tabulate((teffs, loggs, abuns))
             if intens_weighting == 'photon':
                 raise ValueError(f'the combination of atm={atm} and intens_weighting={intens_weighting} is not supported.')
             # TODO: add all other exceptions
