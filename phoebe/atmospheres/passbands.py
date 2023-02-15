@@ -1388,7 +1388,7 @@ class Passband:
             raise ValueError(f'Limb darkening coefficients for ldatm={ldatm} are not available; please compute them first.')
 
         axes = self.atm_axes[ldatm][:-1]
-        table = self.ld_photon_grid[ldatm] if intens_weighting == 'photon' else self.ld_energy_grid['ck2004']
+        table = self.ld_photon_grid[ldatm] if intens_weighting == 'photon' else self.ld_energy_grid[ldatm]
 
         req = ndpolator.tabulate((teffs, loggs, abuns))
         ndp = ndpolator.Ndpolator(axes, table)
