@@ -85,6 +85,19 @@ To understand how to use PHOEBE, please consult the [tutorials, scripts and manu
 CHANGELOG
 ----------
 
+### 2.4.8 - spots optimization bugfix
+
+* spots no longer force the mesh to be recomputed at each timepoint.
+* updates for numpy compatibility and wider test matrix.
+
+### 2.4.7 - line profile bugfix
+
+* fix bug where wavelength arrays that did not include the central wavelength were returning nans for fluxes.
+
+### 2.4.6 - potential to requiv TypeError bugfix
+
+* fix bug where libphoebe was incorrectly raising an error suggesting the potential was out of bounds.
+
 ### 2.4.5 - negative mass bugfix
 
 * fix bug where mass could be set to a negative value causing constraints to resolve to nans.

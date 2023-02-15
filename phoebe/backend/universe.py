@@ -538,6 +538,15 @@ class System(object):
             else:
                 raise NotImplementedError("profile_func='{}' not supported".format(profile_func))
 
+            # By design, the wavelengths array needs to contain central wavelength.
+            # For that reason we use an internal wavelengths array which we then
+            # interpolate to the requested wavelengths array.
+            wmin, wmax = wavelengths.min(), wavelengths.max()
+            min_dispersion = (wavelengths[1:]-wavelengths[:-1]).min()
+            lower_range = np.arange(profile_rest, wmin-min_dispersion, -min_dispersion)[::-1]
+            upper_range = np.arange(profile_rest+min_dispersion, wmax+min_dispersion, min_dispersion)
+            internal_wavelengths = np.concatenate((lower_range, upper_range))
+
             visibilities = meshes.get_column_flat('visibilities', components)
 
             abs_intensities = meshes.get_column_flat('abs_intensities:{}'.format(dataset), components)
@@ -547,10 +556,10 @@ class System(object):
             areas = meshes.get_column_flat('areas_si', components)
 
             rvs = (meshes.get_column_flat("rvs:{}".format(dataset), components)*u.solRad/u.d).to(u.m/u.s).value
-            dls = rvs*profile_rest/c.c.si.value
+            dls = profile_rest*rvs/c.c.si.value
 
-            line = func(sv(wavelengths, profile_rest, profile_sv))
-            lines = np.array([np.interp(wavelengths, wavelengths+dl, line) for dl in dls])
+            line = func(sv(internal_wavelengths, profile_rest, profile_sv))
+            lines = np.array([np.interp(wavelengths, internal_wavelengths+dl, line) for dl in dls])
             if not np.any(visibilities):
                 avg_line = np.full_like(wavelengths, np.nan)
             else:
@@ -2005,7 +2014,12 @@ class Star_roche(Star):
         """
         # TODO: may be able to get away with removing the features check and just doing for pulsations, etc?
         # TODO: what about dpdt, deccdt, dincldt, etc?
-        return len(self.features) > 0 or self.is_misaligned or self.ecc != 0 or self.dynamics_method != 'keplerian'
+
+        for feature in self.features:
+            if feature._remeshing_required:
+                return True
+        
+        return self.is_misaligned or self.ecc != 0 or self.dynamics_method != 'keplerian'
 
     @property
     def _rpole_func(self):
@@ -3020,9 +3034,19 @@ class Feature(object):
     In other words, its probably safest if each feature only overrides a
     SINGLE one of the methods.  Overriding multiple methods should be done
     with great care.
+
+    Each feature may or may not require recomputing a mesh, depending on the
+    kind of change it exacts to the mesh. For example, pulsations will require
+    recomputing a mesh while spots will not. By default, the mesh will be
+    recomputed (set in this superclass' `__init__()` method) but inherited
+    classes should overload `self._remeshing_required`.
     """
     def __init__(self, *args, **kwargs):
         pass
+
+    @property
+    def _remeshing_required(self):
+        return True
 
     @property
     def proto_coords(self):
@@ -3126,6 +3150,10 @@ class Spot(Feature):
         t0 = b.get_value(qualifier='t0', context='system', unit=u.d, **_skip_filter_checks)
 
         return cls(colat, longitude, dlongdt, radius, relteff, t0)
+
+    @property
+    def _remeshing_required(self):
+        return False
 
     @property
     def proto_coords(self):
