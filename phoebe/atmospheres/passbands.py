@@ -1777,7 +1777,6 @@ class Passband:
                 raise ValueError(f'the combination of atm={atm} and intens_weighting={intens_weighting} is not supported.')
             # TODO: add all other exceptions
 
-            req = ndpolator.tabulate((teffs, loggs, abuns))
             intensities = 10**(self._log10_Inorm_extern_atmx(req[:,0], req[:,1], req[:,2])-1)  # -1 is for cgs -> SI
 
         else:
