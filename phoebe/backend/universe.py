@@ -1998,7 +1998,9 @@ class Star_roche(Star):
 
     @property
     def needs_recompute_instantaneous(self):
-        return self.needs_remesh
+        # recompute instantaneous for asynchronous spots, even if meshing
+        # doesn't need to be recomputed
+        return self.needs_remesh or (len(self.features) and self.F != 1.0)
 
     @property
     def needs_remesh(self):
@@ -2007,7 +2009,12 @@ class Star_roche(Star):
         """
         # TODO: may be able to get away with removing the features check and just doing for pulsations, etc?
         # TODO: what about dpdt, deccdt, dincldt, etc?
-        return len(self.features) > 0 or self.is_misaligned or self.ecc != 0 or self.dynamics_method != 'keplerian'
+
+        for feature in self.features:
+            if feature._remeshing_required:
+                return True
+
+        return self.is_misaligned or self.ecc != 0 or self.dynamics_method != 'keplerian'
 
     @property
     def _rpole_func(self):
@@ -2417,6 +2424,12 @@ class Star_rotstar(Star):
     @property
     def is_convex(self):
         return True
+
+    @property
+    def needs_recompute_instantaneous(self):
+        # recompute instantaneous for asynchronous spots, even if meshing
+        # doesn't need to be recomputed
+        return self.needs_remesh or (len(self.features) and self.F != 1.0)
 
     @property
     def needs_remesh(self):
@@ -3016,9 +3029,19 @@ class Feature(object):
     In other words, its probably safest if each feature only overrides a
     SINGLE one of the methods.  Overriding multiple methods should be done
     with great care.
+
+    Each feature may or may not require recomputing a mesh, depending on the
+    kind of change it exacts to the mesh. For example, pulsations will require
+    recomputing a mesh while spots will not. By default, the mesh will be
+    recomputed (set in this superclass' `__init__()` method) but inherited
+    classes should overload `self._remeshing_required`.
     """
     def __init__(self, *args, **kwargs):
         pass
+
+    @property
+    def _remeshing_required(self):
+        return True
 
     @property
     def proto_coords(self):
@@ -3122,6 +3145,10 @@ class Spot(Feature):
         t0 = b.get_value(qualifier='t0', context='system', unit=u.d, **_skip_filter_checks)
 
         return cls(colat, longitude, dlongdt, radius, relteff, t0)
+
+    @property
+    def _remeshing_required(self):
+        return False
 
     @property
     def proto_coords(self):
