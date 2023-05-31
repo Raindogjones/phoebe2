@@ -585,6 +585,7 @@ class Passband:
             if export_inorm_tables:
                 data.append(fits.ImageHDU(self.atm_energy_grid['tmap_dao'][..., -1, :], name='TMDAONEGRID'))
                 data.append(fits.ImageHDU(self.atm_photon_grid['tmap_dao'][..., -1, :], name='TMDAONPGRID'))
+<<<<<<< HEAD
 
         if 'tmap_DAO:ld' in self.content:
             data.append(fits.ImageHDU(self.ld_energy_grid['tmap_dao'], name='TMDAOLEGRID'))
@@ -610,6 +611,33 @@ class Passband:
             data.append(fits.ImageHDU(self.ld_energy_grid['tmap_do'], name='TMDOLEGRID'))
             data.append(fits.ImageHDU(self.ld_photon_grid['tmap_do'], name='TMDOLPGRID'))
 
+=======
+
+        if 'tmap_DAO:ld' in self.content:
+            data.append(fits.ImageHDU(self.ld_energy_grid['tmap_dao'], name='TMDAOLEGRID'))
+            data.append(fits.ImageHDU(self.ld_photon_grid['tmap_dao'], name='TMDAOLPGRID'))
+
+        if 'tmap_DAO:ldint' in self.content:
+            data.append(fits.ImageHDU(self.ldint_energy_grid['tmap_dao'], name='TMDAOIEGRID'))
+            data.append(fits.ImageHDU(self.ldint_photon_grid['tmap_dao'], name='TMDAOIPGRID'))
+
+        if 'tmap_DAO:ext' in self.contenta
+            data.append(fits.ImageHDU(self.ext_energy_grid['tmap_dao'], name='TMDAOXEGRID'))
+            data.append(fits.ImageHDU(self.ext_photon_grid['tmap_dao'], name='TMDAOXPGRID'))
+
+        if 'tmap_DO:Imu' in self.content:
+            data.append(fits.ImageHDU(self.atm_energy_grid['tmap_do'], name='TMDOFEGRID'))
+            data.append(fits.ImageHDU(self.atm_photon_grid['tmap_do'], name='TMDOFPGRID'))
+
+            if export_inorm_tables:
+                data.append(fits.ImageHDU(self.atm_energy_grid['tmap_do'][..., -1, :], name='TMDONEGRID'))
+                data.append(fits.ImageHDU(self.atm_photon_grid['tmap_do'][..., -1, :], name='TMDONPGRID'))
+
+        if 'tmap_DO:ld' in self.content:
+            data.append(fits.ImageHDU(self.ld_energy_grid['tmap_do'], name='TMDOLEGRID'))
+            data.append(fits.ImageHDU(self.ld_photon_grid['tmap_do'], name='TMDOLPGRID'))
+
+>>>>>>> tmap
         if 'tmap_DO:ldint' in self.content:
             data.append(fits.ImageHDU(self.ldint_energy_grid['tmap_do'], name='TMDOIEGRID'))
             data.append(fits.ImageHDU(self.ldint_photon_grid['tmap_do'], name='TMDOIPGRID'))
