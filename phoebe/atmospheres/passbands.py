@@ -868,35 +868,35 @@ class Passband:
                     self.ext_energy_grid['tmap_dao'] = hdul['tmdaoxegrid'].data
                     self.ext_photon_grid['tmap_dao'] = hdul['tmdaoxpgrid'].data
 
-                if 'tmap_DAO:Imu' in self.content:
-                    self.atm_axes['tmap_dao'] = (np.array(list(hdul['tmdao_teffs'].data['teff'])), np.array(list(hdul['tmdao_loggs'].data['logg'])), np.array(list(hdul['tmdao_abuns'].data['abun'])), np.array(list(hdul['tmdao_mus'].data['mu'])))
-                    self.atm_energy_grid['tmap_dao'] = hdul['tmdaofegrid'].data
-                    self.atm_photon_grid['tmap_dao'] = hdul['tmdaofpgrid'].data
+                if 'tmap_DA:Imu' in self.content:
+                    self.atm_axes['tmap_da'] = (np.array(list(hdul['tmda_teffs'].data['teff'])), np.array(list(hdul['tmda_loggs'].data['logg'])), np.array(list(hdul['tmda_abuns'].data['abun'])), np.array(list(hdul['tmda_mus'].data['mu'])))
+                    self.atm_energy_grid['tmap_da'] = hdul['tmdafegrid'].data
+                    self.atm_photon_grid['tmap_da'] = hdul['tmdafpgrid'].data
 
                     # Rebuild the table of non-null indices for the nearest neighbor lookup:
-                    self.nntree['tmap_dao'], self.indices['tmap_dao'] = ndpolator.kdtree(self.atm_axes['tmap_dao'][:-1], self.atm_photon_grid['tmap_dao'][...,-1,:])
+                    self.nntree['tmap_da'], self.indices['tmap_da'] = ndpolator.kdtree(self.atm_axes['tmap_da'][:-1], self.atm_photon_grid['tmap_da'][...,-1,:])
 
                     # Rebuild blending map:
-                    self.blending_region['tmap_dao'] = ((10000, 10000), (0.5, 0.5), (0.25, 0.25))
-                    self.mapper['tmap_dao'] = lambda v: ndpolator.map_to_cube(v, self.atm_axes['tmap_dao'][:-1], self.blending_region['tmap_dao'])
+                    self.blending_region['tmap_da'] = ((10000, 10000), (0.5, 0.5), (0.25, 0.25))
+                    self.mapper['tmap_da'] = lambda v: ndpolator.map_to_cube(v, self.atm_axes['tmap_da'][:-1], self.blending_region['tmap_da'])
 
                     # Rebuild the table of inferior corners for extrapolation:
-                    raxes = self.atm_axes['tmap_dao'][:-1]
-                    subgrid = self.atm_photon_grid['tmap_dao'][...,-1,:]
-                    self.ics['tmap_dao'] = np.array([(i, j, k) for i in range(0,len(raxes[0])-1) for j in range(0,len(raxes[1])-1) for k in range(0,len(raxes[2])-1) if ~np.any(np.isnan(subgrid[i:i+2,j:j+2,k:k+2]))])
+                    raxes = self.atm_axes['tmap_da'][:-1]
+                    subgrid = self.atm_photon_grid['tmap_da'][...,-1,:]
+                    self.ics['tmap_da'] = np.array([(i, j, k) for i in range(0,len(raxes[0])-1) for j in range(0,len(raxes[1])-1) for k in range(0,len(raxes[2])-1) if ~np.any(np.isnan(subgrid[i:i+2,j:j+2,k:k+2]))])
 
-                if 'tmap_DAO:ld' in self.content:
-                    self.ld_energy_grid['tmap_dao'] = hdul['tmdaolegrid'].data
-                    self.ld_photon_grid['tmap_dao'] = hdul['tmdaolpgrid'].data
+                if 'tmap_DA:ld' in self.content:
+                    self.ld_energy_grid['tmap_da'] = hdul['tmdalegrid'].data
+                    self.ld_photon_grid['tmap_da'] = hdul['tmdalpgrid'].data
 
-                if 'tmap_DAO:ldint' in self.content:
-                    self.ldint_energy_grid['tmap_dao'] = hdul['tmdaoiegrid'].data
-                    self.ldint_photon_grid['tmap_dao'] = hdul['tmdaoipgrid'].data
+                if 'tmap_DA:ldint' in self.content:
+                    self.ldint_energy_grid['tmap_da'] = hdul['tmdaiegrid'].data
+                    self.ldint_photon_grid['tmap_da'] = hdul['tmdaipgrid'].data
 
-                if 'tmap_DAO:ext' in self.content:
-                    self.ext_axes['tmap_dao'] = (np.array(list(hdul['tmdao_teffs'].data['teff'])), np.array(list(hdul['tmdao_loggs'].data['logg'])), np.array(list(hdul['tmdao_abuns'].data['abun'])), np.array(list(hdul['tmdao_ebvs'].data['ebv'])), np.array(list(hdul['tmdao_rvs'].data['rv'])))
-                    self.ext_energy_grid['tmap_dao'] = hdul['tmdaoxegrid'].data
-                    self.ext_photon_grid['tmap_dao'] = hdul['tmdaoxpgrid'].data
+                if 'tmap_DA:ext' in self.content:
+                    self.ext_axes['tmap_da'] = (np.array(list(hdul['tmda_teffs'].data['teff'])), np.array(list(hdul['tmda_loggs'].data['logg'])), np.array(list(hdul['tmda_abuns'].data['abun'])), np.array(list(hdul['tmda_ebvs'].data['ebv'])), np.array(list(hdul['tmda_rvs'].data['rv'])))
+                    self.ext_energy_grid['tmap_da'] = hdul['tmdaxegrid'].data
+                    self.ext_photon_grid['tmap_da'] = hdul['tmdaxpgrid'].data
 
         return self
 
