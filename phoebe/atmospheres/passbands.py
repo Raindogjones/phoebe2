@@ -594,7 +594,7 @@ class Passband:
             data.append(fits.ImageHDU(self.ldint_energy_grid['tmap_dao'], name='TMDAOIEGRID'))
             data.append(fits.ImageHDU(self.ldint_photon_grid['tmap_dao'], name='TMDAOIPGRID'))
 
-        if 'tmap_DAO:ext' in self.contenta
+        if 'tmap_DAO:ext' in self.content:
             data.append(fits.ImageHDU(self.ext_energy_grid['tmap_dao'], name='TMDAOXEGRID'))
             data.append(fits.ImageHDU(self.ext_photon_grid['tmap_dao'], name='TMDAOXPGRID'))
 
@@ -614,7 +614,7 @@ class Passband:
             data.append(fits.ImageHDU(self.ldint_energy_grid['tmap_do'], name='TMDOIEGRID'))
             data.append(fits.ImageHDU(self.ldint_photon_grid['tmap_do'], name='TMDOIPGRID'))
 
-        if 'tmap_DO:ext' in self.contenta
+        if 'tmap_DO:ext' in self.content:
             data.append(fits.ImageHDU(self.ext_energy_grid['tmap_do'], name='TMDOXEGRID'))
             data.append(fits.ImageHDU(self.ext_photon_grid['tmap_do'], name='TMDOXPGRID'))
 
