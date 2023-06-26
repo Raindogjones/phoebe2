@@ -539,84 +539,84 @@ class Passband:
             data.append(fits.ImageHDU(self.ext_photon_grid['phoenix'], name='PHXPGRID'))
 
         if 'tmap_sdO:Imu' in self.content:
-            data.append(fits.ImageHDU(self.atm_energy_grid['tmap_sdo'], name='TMSDOFEGRID'))
-            data.append(fits.ImageHDU(self.atm_photon_grid['tmap_sdo'], name='TMSDOFPGRID'))
+            data.append(fits.ImageHDU(self.atm_energy_grid['tmap_sdO'], name='TMSDOFEGRID'))
+            data.append(fits.ImageHDU(self.atm_photon_grid['tmap_sdO'], name='TMSDOFPGRID'))
 
             if export_inorm_tables:
-                data.append(fits.ImageHDU(self.atm_energy_grid['tmap_sdo'][..., -1, :], name='TMSDONEGRID'))
-                data.append(fits.ImageHDU(self.atm_photon_grid['tmap_sdo'][..., -1, :], name='TMSDONPGRID'))
+                data.append(fits.ImageHDU(self.atm_energy_grid['tmap_sdO'][..., -1, :], name='TMSDONEGRID'))
+                data.append(fits.ImageHDU(self.atm_photon_grid['tmap_sdO'][..., -1, :], name='TMSDONPGRID'))
 
         if 'tmap_sdO:ld' in self.content:
-            data.append(fits.ImageHDU(self.ld_energy_grid['tmap_sdo'], name='TMSDOLEGRID'))
-            data.append(fits.ImageHDU(self.ld_photon_grid['tmap_sdo'], name='TMSDOLPGRID'))
+            data.append(fits.ImageHDU(self.ld_energy_grid['tmap_sdO'], name='TMSDOLEGRID'))
+            data.append(fits.ImageHDU(self.ld_photon_grid['tmap_sdO'], name='TMSDOLPGRID'))
 
         if 'tmap_sdO:ldint' in self.content:
-            data.append(fits.ImageHDU(self.ldint_energy_grid['tmap_sdo'], name='TMSDOIEGRID'))
-            data.append(fits.ImageHDU(self.ldint_photon_grid['tmap_sdo'], name='TMSDOIPGRID'))
+            data.append(fits.ImageHDU(self.ldint_energy_grid['tmap_sdO'], name='TMSDOIEGRID'))
+            data.append(fits.ImageHDU(self.ldint_photon_grid['tmap_sdO'], name='TMSDOIPGRID'))
 
         if 'tmap_sdO:ext' in self.content:
-            data.append(fits.ImageHDU(self.ext_energy_grid['tmap_sdo'], name='TMSDOXEGRID'))
-            data.append(fits.ImageHDU(self.ext_photon_grid['tmap_sdo'], name='TMSDOXPGRID'))
+            data.append(fits.ImageHDU(self.ext_energy_grid['tmap_sdO'], name='TMSDOXEGRID'))
+            data.append(fits.ImageHDU(self.ext_photon_grid['tmap_sdO'], name='TMSDOXPGRID'))
 
         if 'tmap_DA:Imu' in self.content:
-            data.append(fits.ImageHDU(self.atm_energy_grid['tmap_da'], name='TMDAFEGRID'))
-            data.append(fits.ImageHDU(self.atm_photon_grid['tmap_da'], name='TMDAFPGRID'))
+            data.append(fits.ImageHDU(self.atm_energy_grid['tmap_DA'], name='TMDAFEGRID'))
+            data.append(fits.ImageHDU(self.atm_photon_grid['tmap_DA'], name='TMDAFPGRID'))
 
             if export_inorm_tables:
-                data.append(fits.ImageHDU(self.atm_energy_grid['tmap_da'][..., -1, :], name='TMDANEGRID'))
-                data.append(fits.ImageHDU(self.atm_photon_grid['tmap_da'][..., -1, :], name='TMDANPGRID'))
+                data.append(fits.ImageHDU(self.atm_energy_grid['tmap_DA'][..., -1, :], name='TMDANEGRID'))
+                data.append(fits.ImageHDU(self.atm_photon_grid['tmap_DA'][..., -1, :], name='TMDANPGRID'))
 
         if 'tmap_DA:ld' in self.content:
-            data.append(fits.ImageHDU(self.ld_energy_grid['tmap_da'], name='TMDALEGRID'))
-            data.append(fits.ImageHDU(self.ld_photon_grid['tmap_da'], name='TMDALPGRID'))
+            data.append(fits.ImageHDU(self.ld_energy_grid['tmap_DA'], name='TMDALEGRID'))
+            data.append(fits.ImageHDU(self.ld_photon_grid['tmap_DA'], name='TMDALPGRID'))
 
         if 'tmap_DA:ldint' in self.content:
-            data.append(fits.ImageHDU(self.ldint_energy_grid['tmap_da'], name='TMDAIEGRID'))
-            data.append(fits.ImageHDU(self.ldint_photon_grid['tmap_da'], name='TMDAIPGRID'))
+            data.append(fits.ImageHDU(self.ldint_energy_grid['tmap_DA'], name='TMDAIEGRID'))
+            data.append(fits.ImageHDU(self.ldint_photon_grid['tmap_DA'], name='TMDAIPGRID'))
 
         if 'tmap_DA:ext' in self.content:
-            data.append(fits.ImageHDU(self.ext_energy_grid['tmap_da'], name='TMDAXEGRID'))
-            data.append(fits.ImageHDU(self.ext_photon_grid['tmap_da'], name='TMDAXPGRID'))
+            data.append(fits.ImageHDU(self.ext_energy_grid['tmap_DA'], name='TMDAXEGRID'))
+            data.append(fits.ImageHDU(self.ext_photon_grid['tmap_DA'], name='TMDAXPGRID'))
 
         if 'tmap_DAO:Imu' in self.content:
-            data.append(fits.ImageHDU(self.atm_energy_grid['tmap_dao'], name='TMDAOFEGRID'))
-            data.append(fits.ImageHDU(self.atm_photon_grid['tmap_dao'], name='TMDAOFPGRID'))
+            data.append(fits.ImageHDU(self.atm_energy_grid['tmap_DAO'], name='TMDAOFEGRID'))
+            data.append(fits.ImageHDU(self.atm_photon_grid['tmap_DAO'], name='TMDAOFPGRID'))
 
             if export_inorm_tables:
-                data.append(fits.ImageHDU(self.atm_energy_grid['tmap_dao'][..., -1, :], name='TMDAONEGRID'))
-                data.append(fits.ImageHDU(self.atm_photon_grid['tmap_dao'][..., -1, :], name='TMDAONPGRID'))
+                data.append(fits.ImageHDU(self.atm_energy_grid['tmap_DAO'][..., -1, :], name='TMDAONEGRID'))
+                data.append(fits.ImageHDU(self.atm_photon_grid['tmap_DAO'][..., -1, :], name='TMDAONPGRID'))
 
         if 'tmap_DAO:ld' in self.content:
-            data.append(fits.ImageHDU(self.ld_energy_grid['tmap_dao'], name='TMDAOLEGRID'))
-            data.append(fits.ImageHDU(self.ld_photon_grid['tmap_dao'], name='TMDAOLPGRID'))
+            data.append(fits.ImageHDU(self.ld_energy_grid['tmap_DAO'], name='TMDAOLEGRID'))
+            data.append(fits.ImageHDU(self.ld_photon_grid['tmap_DAO'], name='TMDAOLPGRID'))
 
         if 'tmap_DAO:ldint' in self.content:
-            data.append(fits.ImageHDU(self.ldint_energy_grid['tmap_dao'], name='TMDAOIEGRID'))
-            data.append(fits.ImageHDU(self.ldint_photon_grid['tmap_dao'], name='TMDAOIPGRID'))
+            data.append(fits.ImageHDU(self.ldint_energy_grid['tmap_DAO'], name='TMDAOIEGRID'))
+            data.append(fits.ImageHDU(self.ldint_photon_grid['tmap_DAO'], name='TMDAOIPGRID'))
 
         if 'tmap_DAO:ext' in self.content:
-            data.append(fits.ImageHDU(self.ext_energy_grid['tmap_dao'], name='TMDAOXEGRID'))
-            data.append(fits.ImageHDU(self.ext_photon_grid['tmap_dao'], name='TMDAOXPGRID'))
+            data.append(fits.ImageHDU(self.ext_energy_grid['tmap_DAO'], name='TMDAOXEGRID'))
+            data.append(fits.ImageHDU(self.ext_photon_grid['tmap_DAO'], name='TMDAOXPGRID'))
 
         if 'tmap_DO:Imu' in self.content:
-            data.append(fits.ImageHDU(self.atm_energy_grid['tmap_do'], name='TMDOFEGRID'))
-            data.append(fits.ImageHDU(self.atm_photon_grid['tmap_do'], name='TMDOFPGRID'))
+            data.append(fits.ImageHDU(self.atm_energy_grid['tmap_DAO'], name='TMDOFEGRID'))
+            data.append(fits.ImageHDU(self.atm_photon_grid['tmap_DAO'], name='TMDOFPGRID'))
 
             if export_inorm_tables:
-                data.append(fits.ImageHDU(self.atm_energy_grid['tmap_do'][..., -1, :], name='TMDONEGRID'))
-                data.append(fits.ImageHDU(self.atm_photon_grid['tmap_do'][..., -1, :], name='TMDONPGRID'))
+                data.append(fits.ImageHDU(self.atm_energy_grid['tmap_DO'][..., -1, :], name='TMDONEGRID'))
+                data.append(fits.ImageHDU(self.atm_photon_grid['tmap_DO'][..., -1, :], name='TMDONPGRID'))
 
         if 'tmap_DO:ld' in self.content:
-            data.append(fits.ImageHDU(self.ld_energy_grid['tmap_do'], name='TMDOLEGRID'))
-            data.append(fits.ImageHDU(self.ld_photon_grid['tmap_do'], name='TMDOLPGRID'))
+            data.append(fits.ImageHDU(self.ld_energy_grid['tmap_DO'], name='TMDOLEGRID'))
+            data.append(fits.ImageHDU(self.ld_photon_grid['tmap_DO'], name='TMDOLPGRID'))
 
         if 'tmap_DO:ldint' in self.content:
-            data.append(fits.ImageHDU(self.ldint_energy_grid['tmap_do'], name='TMDOIEGRID'))
-            data.append(fits.ImageHDU(self.ldint_photon_grid['tmap_do'], name='TMDOIPGRID'))
+            data.append(fits.ImageHDU(self.ldint_energy_grid['tmap_DO'], name='TMDOIEGRID'))
+            data.append(fits.ImageHDU(self.ldint_photon_grid['tmap_DO'], name='TMDOIPGRID'))
 
         if 'tmap_DO:ext' in self.content:
-            data.append(fits.ImageHDU(self.ext_energy_grid['tmap_do'], name='TMDOXEGRID'))
-            data.append(fits.ImageHDU(self.ext_photon_grid['tmap_do'], name='TMDOXPGRID'))
+            data.append(fits.ImageHDU(self.ext_energy_grid['tmap_DO'], name='TMDOXEGRID'))
+            data.append(fits.ImageHDU(self.ext_photon_grid['tmap_DO'], name='TMDOXPGRID'))
 
         pb = fits.HDUList(data)
         pb.writeto(archive, overwrite=overwrite)
@@ -779,124 +779,124 @@ class Passband:
                     self.ext_photon_grid['phoenix'] = hdul['phxpgrid'].data
 
                 if 'tmap_sdO:Imu' in self.content:
-                    self.atm_axes['tmap_sdo'] = (np.array(list(hdul['tmsdo_teffs'].data['teff'])), np.array(list(hdul['tmsdo_loggs'].data['logg'])), np.array(list(hdul['tmsdo_abuns'].data['abun'])), np.array(list(hdul['tmsdo_mus'].data['mu'])))
-                    self.atm_energy_grid['tmap_sdo'] = hdul['tmsdofegrid'].data
-                    self.atm_photon_grid['tmap_sdo'] = hdul['tmsdofpgrid'].data
+                    self.atm_axes['tmap_sdO'] = (np.array(list(hdul['tmsdo_teffs'].data['teff'])), np.array(list(hdul['tmsdo_loggs'].data['logg'])), np.array(list(hdul['tmsdo_abuns'].data['abun'])), np.array(list(hdul['tmsdo_mus'].data['mu'])))
+                    self.atm_energy_grid['tmap_sdO'] = hdul['tmsdofegrid'].data
+                    self.atm_photon_grid['tmap_sdO'] = hdul['tmsdofpgrid'].data
 
                     # Rebuild the table of non-null indices for the nearest neighbor lookup:
-                    self.nntree['tmap_sdo'], self.indices['tmap_sdo'] = ndpolator.kdtree(self.atm_axes['tmap_sdo'][:-1], self.atm_photon_grid['tmap_sdo'][...,-1,:])
+                    self.nntree['tmap_sdO'], self.indices['tmap_sdO'] = ndpolator.kdtree(self.atm_axes['tmap_sdO'][:-1], self.atm_photon_grid['tmap_sdO'][...,-1,:])
 
                     # Rebuild blending map:
-                    self.blending_region['tmap_sdo'] = ((10000, 10000), (0.5, 0.5), (0.25, 0.25))
-                    self.mapper['tmap_sdo'] = lambda v: ndpolator.map_to_cube(v, self.atm_axes['tmap_sdo'][:-1], self.blending_region['tmap_sdo'])
+                    self.blending_region['tmap_sdO'] = ((10000, 10000), (0.5, 0.5), (0.25, 0.25))
+                    self.mapper['tmap_sdO'] = lambda v: ndpolator.map_to_cube(v, self.atm_axes['tmap_sdO'][:-1], self.blending_region['tmap_sdO'])
 
                     # Rebuild the table of inferior corners for extrapolation:
-                    raxes = self.atm_axes['tmap_sdo'][:-1]
-                    subgrid = self.atm_photon_grid['tmap_sdo'][...,-1,:]
-                    self.ics['tmap_sdo'] = np.array([(i, j, k) for i in range(0,len(raxes[0])-1) for j in range(0,len(raxes[1])-1) for k in range(0,len(raxes[2])-1) if ~np.any(np.isnan(subgrid[i:i+2,j:j+2,k:k+2]))])
+                    raxes = self.atm_axes['tmap_sdO'][:-1]
+                    subgrid = self.atm_photon_grid['tmap_sdO'][...,-1,:]
+                    self.ics['tmap_sdO'] = np.array([(i, j, k) for i in range(0,len(raxes[0])-1) for j in range(0,len(raxes[1])-1) for k in range(0,len(raxes[2])-1) if ~np.any(np.isnan(subgrid[i:i+2,j:j+2,k:k+2]))])
 
                 if 'tmap_sdO:ld' in self.content:
-                    self.ld_energy_grid['tmap_sdo'] = hdul['tmsdolegrid'].data
-                    self.ld_photon_grid['tmap_sdo'] = hdul['tmsdolpgrid'].data
+                    self.ld_energy_grid['tmap_sdO'] = hdul['tmsdolegrid'].data
+                    self.ld_photon_grid['tmap_sdO'] = hdul['tmsdolpgrid'].data
 
                 if 'tmap_sdO:ldint' in self.content:
-                    self.ldint_energy_grid['tmap_sdo'] = hdul['tmsdoiegrid'].data
-                    self.ldint_photon_grid['tmap_sdo'] = hdul['tmsdoipgrid'].data
+                    self.ldint_energy_grid['tmap_sdO'] = hdul['tmsdoiegrid'].data
+                    self.ldint_photon_grid['tmap_sdO'] = hdul['tmsdoipgrid'].data
 
                 if 'tmap_sdO:ext' in self.content:
-                    self.ext_axes['tmap_sdo'] = (np.array(list(hdul['tmsdo_teffs'].data['teff'])), np.array(list(hdul['tmsdo_loggs'].data['logg'])), np.array(list(hdul['tmsdo_abuns'].data['abun'])), np.array(list(hdul['tmsdo_ebvs'].data['ebv'])), np.array(list(hdul['tmsdo_rvs'].data['rv'])))
-                    self.ext_energy_grid['tmap_sdo'] = hdul['tmsdoxegrid'].data
-                    self.ext_photon_grid['tmap_sdo'] = hdul['tmsdoxpgrid'].data
+                    self.ext_axes['tmap_sdO'] = (np.array(list(hdul['tmsdo_teffs'].data['teff'])), np.array(list(hdul['tmsdo_loggs'].data['logg'])), np.array(list(hdul['tmsdo_abuns'].data['abun'])), np.array(list(hdul['tmsdo_ebvs'].data['ebv'])), np.array(list(hdul['tmsdo_rvs'].data['rv'])))
+                    self.ext_energy_grid['tmap_sdO'] = hdul['tmsdoxegrid'].data
+                    self.ext_photon_grid['tmap_sdO'] = hdul['tmsdoxpgrid'].data
 
                 if 'tmap_DO:Imu' in self.content:
-                    self.atm_axes['tmap_do'] = (np.array(list(hdul['tmdo_teffs'].data['teff'])), np.array(list(hdul['tmdo_loggs'].data['logg'])), np.array(list(hdul['tmdo_abuns'].data['abun'])), np.array(list(hdul['tmdo_mus'].data['mu'])))
-                    self.atm_energy_grid['tmap_do'] = hdul['tmdofegrid'].data
-                    self.atm_photon_grid['tmap_do'] = hdul['tmdofpgrid'].data
+                    self.atm_axes['tmap_DO'] = (np.array(list(hdul['tmdo_teffs'].data['teff'])), np.array(list(hdul['tmdo_loggs'].data['logg'])), np.array(list(hdul['tmdo_abuns'].data['abun'])), np.array(list(hdul['tmdo_mus'].data['mu'])))
+                    self.atm_energy_grid['tmap_DO'] = hdul['tmdofegrid'].data
+                    self.atm_photon_grid['tmap_DO'] = hdul['tmdofpgrid'].data
 
                     # Rebuild the table of non-null indices for the nearest neighbor lookup:
-                    self.nntree['tmap_do'], self.indices['tmap_do'] = ndpolator.kdtree(self.atm_axes['tmap_do'][:-1], self.atm_photon_grid['tmap_do'][...,-1,:])
+                    self.nntree['tmap_DO'], self.indices['tmap_DO'] = ndpolator.kdtree(self.atm_axes['tmap_DO'][:-1], self.atm_photon_grid['tmap_DO'][...,-1,:])
 
                     # Rebuild blending map:
-                    self.blending_region['tmap_do'] = ((10000, 10000), (0.5, 0.5), (0.25, 0.25))
-                    self.mapper['tmap_do'] = lambda v: ndpolator.map_to_cube(v, self.atm_axes['tmap_do'][:-1], self.blending_region['tmap_do'])
+                    self.blending_region['tmap_DO'] = ((10000, 10000), (0.5, 0.5), (0.25, 0.25))
+                    self.mapper['tmap_DO'] = lambda v: ndpolator.map_to_cube(v, self.atm_axes['tmap_DO'][:-1], self.blending_region['tmap_DO'])
 
                     # Rebuild the table of inferior corners for extrapolation:
-                    raxes = self.atm_axes['tmap_do'][:-1]
-                    subgrid = self.atm_photon_grid['tmap_do'][...,-1,:]
-                    self.ics['tmap_do'] = np.array([(i, j, k) for i in range(0,len(raxes[0])-1) for j in range(0,len(raxes[1])-1) for k in range(0,len(raxes[2])-1) if ~np.any(np.isnan(subgrid[i:i+2,j:j+2,k:k+2]))])
+                    raxes = self.atm_axes['tmap_DO'][:-1]
+                    subgrid = self.atm_photon_grid['tmap_DO'][...,-1,:]
+                    self.ics['tmap_DO'] = np.array([(i, j, k) for i in range(0,len(raxes[0])-1) for j in range(0,len(raxes[1])-1) for k in range(0,len(raxes[2])-1) if ~np.any(np.isnan(subgrid[i:i+2,j:j+2,k:k+2]))])
 
                 if 'tmap_DO:ld' in self.content:
-                    self.ld_energy_grid['tmap_do'] = hdul['tmdolegrid'].data
-                    self.ld_photon_grid['tmap_do'] = hdul['tmdolpgrid'].data
+                    self.ld_energy_grid['tmap_DO'] = hdul['tmdolegrid'].data
+                    self.ld_photon_grid['tmap_DO'] = hdul['tmdolpgrid'].data
 
                 if 'tmap_DO:ldint' in self.content:
-                    self.ldint_energy_grid['tmap_do'] = hdul['tmdoiegrid'].data
-                    self.ldint_photon_grid['tmap_do'] = hdul['tmdoipgrid'].data
+                    self.ldint_energy_grid['tmap_DO'] = hdul['tmdoiegrid'].data
+                    self.ldint_photon_grid['tmap_DO'] = hdul['tmdoipgrid'].data
 
                 if 'tmap_DO:ext' in self.content:
-                    self.ext_axes['tmap_do'] = (np.array(list(hdul['tmdo_teffs'].data['teff'])), np.array(list(hdul['tmdo_loggs'].data['logg'])), np.array(list(hdul['tmdo_abuns'].data['abun'])), np.array(list(hdul['tmdo_ebvs'].data['ebv'])), np.array(list(hdul['tmdo_rvs'].data['rv'])))
-                    self.ext_energy_grid['tmap_do'] = hdul['tmdoxegrid'].data
-                    self.ext_photon_grid['tmap_do'] = hdul['tmdoxpgrid'].data
+                    self.ext_axes['tmap_DO'] = (np.array(list(hdul['tmdo_teffs'].data['teff'])), np.array(list(hdul['tmdo_loggs'].data['logg'])), np.array(list(hdul['tmdo_abuns'].data['abun'])), np.array(list(hdul['tmdo_ebvs'].data['ebv'])), np.array(list(hdul['tmdo_rvs'].data['rv'])))
+                    self.ext_energy_grid['tmap_DO'] = hdul['tmdoxegrid'].data
+                    self.ext_photon_grid['tmap_DO'] = hdul['tmdoxpgrid'].data
 
                 if 'tmap_DAO:Imu' in self.content:
-                    self.atm_axes['tmap_dao'] = (np.array(list(hdul['tmdao_teffs'].data['teff'])), np.array(list(hdul['tmdao_loggs'].data['logg'])), np.array(list(hdul['tmdao_abuns'].data['abun'])), np.array(list(hdul['tmdao_mus'].data['mu'])))
-                    self.atm_energy_grid['tmap_dao'] = hdul['tmdaofegrid'].data
-                    self.atm_photon_grid['tmap_dao'] = hdul['tmdaofpgrid'].data
+                    self.atm_axes['tmap_DAO'] = (np.array(list(hdul['tmdao_teffs'].data['teff'])), np.array(list(hdul['tmdao_loggs'].data['logg'])), np.array(list(hdul['tmdao_abuns'].data['abun'])), np.array(list(hdul['tmdao_mus'].data['mu'])))
+                    self.atm_energy_grid['tmap_DAO'] = hdul['tmdaofegrid'].data
+                    self.atm_photon_grid['tmap_DAO'] = hdul['tmdaofpgrid'].data
 
                     # Rebuild the table of non-null indices for the nearest neighbor lookup:
-                    self.nntree['tmap_dao'], self.indices['tmap_dao'] = ndpolator.kdtree(self.atm_axes['tmap_dao'][:-1], self.atm_photon_grid['tmap_dao'][...,-1,:])
+                    self.nntree['tmap_DAO'], self.indices['tmap_DAO'] = ndpolator.kdtree(self.atm_axes['tmap_DAO'][:-1], self.atm_photon_grid['tmap_DAO'][...,-1,:])
 
                     # Rebuild blending map:
-                    self.blending_region['tmap_dao'] = ((10000, 10000), (0.5, 0.5), (0.25, 0.25))
-                    self.mapper['tmap_dao'] = lambda v: ndpolator.map_to_cube(v, self.atm_axes['tmap_dao'][:-1], self.blending_region['tmap_dao'])
+                    self.blending_region['tmap_DAO'] = ((10000, 10000), (0.5, 0.5), (0.25, 0.25))
+                    self.mapper['tmap_DAO'] = lambda v: ndpolator.map_to_cube(v, self.atm_axes['tmap_DAO'][:-1], self.blending_region['tmap_DAO'])
 
                     # Rebuild the table of inferior corners for extrapolation:
-                    raxes = self.atm_axes['tmap_dao'][:-1]
-                    subgrid = self.atm_photon_grid['tmap_dao'][...,-1,:]
-                    self.ics['tmap_dao'] = np.array([(i, j, k) for i in range(0,len(raxes[0])-1) for j in range(0,len(raxes[1])-1) for k in range(0,len(raxes[2])-1) if ~np.any(np.isnan(subgrid[i:i+2,j:j+2,k:k+2]))])
+                    raxes = self.atm_axes['tmap_DAO'][:-1]
+                    subgrid = self.atm_photon_grid['tmap_DAO'][...,-1,:]
+                    self.ics['tmap_DAO'] = np.array([(i, j, k) for i in range(0,len(raxes[0])-1) for j in range(0,len(raxes[1])-1) for k in range(0,len(raxes[2])-1) if ~np.any(np.isnan(subgrid[i:i+2,j:j+2,k:k+2]))])
 
                 if 'tmap_DAO:ld' in self.content:
-                    self.ld_energy_grid['tmap_dao'] = hdul['tmdaolegrid'].data
-                    self.ld_photon_grid['tmap_dao'] = hdul['tmdaolpgrid'].data
+                    self.ld_energy_grid['tmap_DAO'] = hdul['tmdaolegrid'].data
+                    self.ld_photon_grid['tmap_DAO'] = hdul['tmdaolpgrid'].data
 
                 if 'tmap_DAO:ldint' in self.content:
-                    self.ldint_energy_grid['tmap_dao'] = hdul['tmdaoiegrid'].data
-                    self.ldint_photon_grid['tmap_dao'] = hdul['tmdaoipgrid'].data
+                    self.ldint_energy_grid['tmap_DAO'] = hdul['tmdaoiegrid'].data
+                    self.ldint_photon_grid['tmap_DAO'] = hdul['tmdaoipgrid'].data
 
                 if 'tmap_DAO:ext' in self.content:
-                    self.ext_axes['tmap_dao'] = (np.array(list(hdul['tmdao_teffs'].data['teff'])), np.array(list(hdul['tmdao_loggs'].data['logg'])), np.array(list(hdul['tmdao_abuns'].data['abun'])), np.array(list(hdul['tmdao_ebvs'].data['ebv'])), np.array(list(hdul['tmdao_rvs'].data['rv'])))
-                    self.ext_energy_grid['tmap_dao'] = hdul['tmdaoxegrid'].data
-                    self.ext_photon_grid['tmap_dao'] = hdul['tmdaoxpgrid'].data
+                    self.ext_axes['tmap_DAO'] = (np.array(list(hdul['tmdao_teffs'].data['teff'])), np.array(list(hdul['tmdao_loggs'].data['logg'])), np.array(list(hdul['tmdao_abuns'].data['abun'])), np.array(list(hdul['tmdao_ebvs'].data['ebv'])), np.array(list(hdul['tmdao_rvs'].data['rv'])))
+                    self.ext_energy_grid['tmap_DAO'] = hdul['tmdaoxegrid'].data
+                    self.ext_photon_grid['tmap_DAO'] = hdul['tmdaoxpgrid'].data
 
                 if 'tmap_DA:Imu' in self.content:
-                    self.atm_axes['tmap_da'] = (np.array(list(hdul['tmda_teffs'].data['teff'])), np.array(list(hdul['tmda_loggs'].data['logg'])), np.array(list(hdul['tmda_abuns'].data['abun'])), np.array(list(hdul['tmda_mus'].data['mu'])))
-                    self.atm_energy_grid['tmap_da'] = hdul['tmdafegrid'].data
-                    self.atm_photon_grid['tmap_da'] = hdul['tmdafpgrid'].data
+                    self.atm_axes['tmap_DA'] = (np.array(list(hdul['tmda_teffs'].data['teff'])), np.array(list(hdul['tmda_loggs'].data['logg'])), np.array(list(hdul['tmda_abuns'].data['abun'])), np.array(list(hdul['tmda_mus'].data['mu'])))
+                    self.atm_energy_grid['tmap_DA'] = hdul['tmdafegrid'].data
+                    self.atm_photon_grid['tmap_DA'] = hdul['tmdafpgrid'].data
 
                     # Rebuild the table of non-null indices for the nearest neighbor lookup:
-                    self.nntree['tmap_da'], self.indices['tmap_da'] = ndpolator.kdtree(self.atm_axes['tmap_da'][:-1], self.atm_photon_grid['tmap_da'][...,-1,:])
+                    self.nntree['tmap_DA'], self.indices['tmap_DA'] = ndpolator.kdtree(self.atm_axes['tmap_DA'][:-1], self.atm_photon_grid['tmap_DA'][...,-1,:])
 
                     # Rebuild blending map:
-                    self.blending_region['tmap_da'] = ((10000, 10000), (0.5, 0.5), (0.25, 0.25))
-                    self.mapper['tmap_da'] = lambda v: ndpolator.map_to_cube(v, self.atm_axes['tmap_da'][:-1], self.blending_region['tmap_da'])
+                    self.blending_region['tmap_DA'] = ((10000, 10000), (0.5, 0.5), (0.25, 0.25))
+                    self.mapper['tmap_DA'] = lambda v: ndpolator.map_to_cube(v, self.atm_axes['tmap_DA'][:-1], self.blending_region['tmap_DA'])
 
                     # Rebuild the table of inferior corners for extrapolation:
-                    raxes = self.atm_axes['tmap_da'][:-1]
-                    subgrid = self.atm_photon_grid['tmap_da'][...,-1,:]
-                    self.ics['tmap_da'] = np.array([(i, j, k) for i in range(0,len(raxes[0])-1) for j in range(0,len(raxes[1])-1) for k in range(0,len(raxes[2])-1) if ~np.any(np.isnan(subgrid[i:i+2,j:j+2,k:k+2]))])
+                    raxes = self.atm_axes['tmap_DA'][:-1]
+                    subgrid = self.atm_photon_grid['tmap_DA'][...,-1,:]
+                    self.ics['tmap_DA'] = np.array([(i, j, k) for i in range(0,len(raxes[0])-1) for j in range(0,len(raxes[1])-1) for k in range(0,len(raxes[2])-1) if ~np.any(np.isnan(subgrid[i:i+2,j:j+2,k:k+2]))])
 
                 if 'tmap_DA:ld' in self.content:
-                    self.ld_energy_grid['tmap_da'] = hdul['tmdalegrid'].data
-                    self.ld_photon_grid['tmap_da'] = hdul['tmdalpgrid'].data
+                    self.ld_energy_grid['tmap_DA'] = hdul['tmdalegrid'].data
+                    self.ld_photon_grid['tmap_DA'] = hdul['tmdalpgrid'].data
 
                 if 'tmap_DA:ldint' in self.content:
-                    self.ldint_energy_grid['tmap_da'] = hdul['tmdaiegrid'].data
-                    self.ldint_photon_grid['tmap_da'] = hdul['tmdaipgrid'].data
+                    self.ldint_energy_grid['tmap_DA'] = hdul['tmdaiegrid'].data
+                    self.ldint_photon_grid['tmap_DA'] = hdul['tmdaipgrid'].data
 
                 if 'tmap_DA:ext' in self.content:
-                    self.ext_axes['tmap_da'] = (np.array(list(hdul['tmda_teffs'].data['teff'])), np.array(list(hdul['tmda_loggs'].data['logg'])), np.array(list(hdul['tmda_abuns'].data['abun'])), np.array(list(hdul['tmda_ebvs'].data['ebv'])), np.array(list(hdul['tmda_rvs'].data['rv'])))
-                    self.ext_energy_grid['tmap_da'] = hdul['tmdaxegrid'].data
-                    self.ext_photon_grid['tmap_da'] = hdul['tmdaxpgrid'].data
+                    self.ext_axes['tmap_DA'] = (np.array(list(hdul['tmda_teffs'].data['teff'])), np.array(list(hdul['tmda_loggs'].data['logg'])), np.array(list(hdul['tmda_abuns'].data['abun'])), np.array(list(hdul['tmda_ebvs'].data['ebv'])), np.array(list(hdul['tmda_rvs'].data['rv'])))
+                    self.ext_energy_grid['tmap_DA'] = hdul['tmdaxegrid'].data
+                    self.ext_photon_grid['tmap_DA'] = hdul['tmdaxpgrid'].data
 
         return self
 
