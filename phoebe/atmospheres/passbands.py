@@ -1598,10 +1598,16 @@ class Passband:
         if f'{ldatm}:ld' not in self.content:
             raise ValueError(f'Limb darkening coefficients for ldatm={ldatm} are not available; please compute them first.')
 
-        axes = self.atm_axes[ldatm][:-1]
-        table = self.ld_photon_grid[ldatm] if intens_weighting == 'photon' else self.ld_energy_grid[ldatm]
+        if atm == 'tmap_DA' or atm == 'tmap_DO':
+            axes = self.atm_axes[ldatm][:-2]
+            table = self.ld_photon_grid[ldatm][:-1] if intens_weighting == 'photon' else self.ld_energy_grid[ldatm][:-1]
+            req = ndpolator.tabulate((teffs, loggs))
 
-        req = ndpolator.tabulate((teffs, loggs, abuns))
+        else:
+            axes = self.atm_axes[ldatm][:-1]
+            table = self.ld_photon_grid[ldatm] if intens_weighting == 'photon' else self.ld_energy_grid[ldatm]
+            req = ndpolator.tabulate((teffs, loggs, abuns))
+
         ndp = ndpolator.Ndpolator(axes, table)
         # ld_coeffs = libphoebe.interp(req, axes, table)
         ld_coeffs = ndp.interp(req, extrapolation_method=ld_extrapolation_method)
@@ -1773,10 +1779,18 @@ class Passband:
         ValueError
             _description_
         """
-        axes = self.atm_axes[atm][:-1]
-        grid = self.atm_photon_grid[atm][...,-1,:] if intens_weighting == 'photon' else self.atm_energy_grid[atm][...,-1,:]
-        ndp = ndpolator.Ndpolator(axes, grid)
-        req = ndp.tabulate((teffs, loggs, abuns))
+        if atm == 'tmap_DA' or 'tmap_DO':
+            axes = self.atm_axes[atm][:-2]
+            grid = self.atm_photon_grid[atm][...,-1,-1,:] if intens_weighting == 'photon' else self.atm_energy_grid[atm][...,-1,-1,:]
+            ndp = ndpolator.Ndpolator(axes, grid)
+            req = ndp.tabulate((teffs,loggs))
+        else:
+            axes = self.atm_axes[atm][:-1]
+            grid = self.atm_photon_grid[atm][...,-1,:] if intens_weighting == 'photon' else self.atm_energy_grid[atm][...,-1,:]
+            ndp = ndpolator.Ndpolator(axes, grid)
+            req = ndp.tabulate((teffs, loggs, abuns))
+
+
         log10_Inorm, nanmask = ndp.interp(req, raise_on_nans=raise_on_nans, return_nanmask=True, extrapolation_method=atm_extrapolation_method)
         # nanmask is a mask of elements that were nans before extrapolation.
 
@@ -1910,7 +1924,7 @@ class Passband:
         if atm not in _supported_atms:
             raise RuntimeError(f'atm={atm} is not supported.')
 
-        if ldatm not in _ldatms.append('none'):
+        if ldatm not in _ldatms:
             raise ValueError(f'ldatm={ldatm} is not supported.')
 
         if intens_weighting not in ['energy', 'photon']:
@@ -2027,10 +2041,16 @@ class Passband:
         # a temporary shortcut for testing purposes only:
         if atm == 'ck2004':
             ndp = self.ndp[f'imu@{intens_weighting}@{atm}']
+        elif atm == 'tmap_DA' or atm == 'tmap_DO'
+            axes = np.delete(self.atm_axes[atm],2)
+            grid = self.atm_photon_grid[atm][...,-1,:,:] if intens_weighting == 'photon' else self.atm_energy_grid[atm][...,-1,:,:]
+            ndp = ndpolator.Ndpolator(axes, grid)
+            req = ndp.tabulate((teffs, loggs, mus))
         else:
             axes = self.atm_axes[atm]
             grid = self.atm_photon_grid[atm] if intens_weighting == 'photon' else self.atm_energy_grid[atm]
             ndp = ndpolator.Ndpolator(axes, grid)
+            req = ndp.tabulate((teffs, loggs, abuns, mus))
 
         req = ndp.tabulate((teffs, loggs, abuns, mus))
         log10_Imu, nanmask = ndp.interp(req, raise_on_nans=raise_on_nans, return_nanmask=True, extrapolation_method=atm_extrapolation_method)
@@ -2148,7 +2168,7 @@ class Passband:
         if atm not in _supported_atms:
             raise RuntimeError(f'atm={atm} is not supported.')
 
-        if ldatm not in _ldatms.append('none'):
+        if ldatm not in _ldatms:
             raise ValueError(f'ldatm={ldatm} is not supported.')
 
         raise_on_nans = True if atm_extrapolation_method == 'none' else False

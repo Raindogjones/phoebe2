@@ -3991,7 +3991,7 @@ class Bundle(ParameterSet):
                                             True, 'run_compute')
                         else:
                             atm = self.get_value(qualifier='atm', component=component, compute=compute, context='compute', atm=kwargs.get('atm', None), **_skip_filter_checks)
-                            if atm not in ['ck2004', 'phoenix', 'tmap']:
+                            if atm not in ['ck2004', 'phoenix', 'tmap_DA', 'tmap_sdO', 'tmap_DO', 'tmap_DAO']:
                                 if 'ck2004' in self.get_parameter(qualifier='atm', component=component, compute=compute, context='compute', atm=kwargs.get('atm', None), **_skip_filter_checks).choices:
                                     report.add_item(self,
                                                     "ld_mode='interp' not supported by atm='{}'.  Either change atm@{}@{} or ld_mode@{}@{}.".format(atm, component, compute, component, dataset),
@@ -10304,6 +10304,7 @@ class Bundle(ParameterSet):
                     else:
                         ldcs = atm
 
+
                 pb = get_passband(passband, content='{}:ld'.format(ldcs))
                 teff = self.get_value(qualifier='teff', component=ldcs_param.component, context='component', unit='K', **_skip_filter_checks)
                 logg = self.get_value(qualifier='logg', component=ldcs_param.component, context='component', **_skip_filter_checks)
@@ -10313,7 +10314,7 @@ class Bundle(ParameterSet):
                 # all other backends that do not have this parameter, the following
                 # expression will default to 'none'.
                 ld_extrapolation_method = compute_ps.get_value(qualifier='ld_blending_method', component=ldcs_param.component, default='none', **_skip_filter_checks)
-                
+
                 if is_bol:
                     intens_weighting = 'energy'
                 else:
