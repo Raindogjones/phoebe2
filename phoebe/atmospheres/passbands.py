@@ -2041,7 +2041,7 @@ class Passband:
         # a temporary shortcut for testing purposes only:
         if atm == 'ck2004':
             ndp = self.ndp[f'imu@{intens_weighting}@{atm}']
-        elif atm == 'tmap_DA' or atm == 'tmap_DO'
+        elif atm == 'tmap_DA' or atm == 'tmap_DO':
             axes = np.delete(self.atm_axes[atm],2)
             grid = self.atm_photon_grid[atm][...,-1,:,:] if intens_weighting == 'photon' else self.atm_energy_grid[atm][...,-1,:,:]
             ndp = ndpolator.Ndpolator(axes, grid)
