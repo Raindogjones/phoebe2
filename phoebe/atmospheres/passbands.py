@@ -1600,7 +1600,7 @@ class Passband:
 
         if ldatm == 'tmap_DA' or ldatm == 'tmap_DO':
             axes = self.atm_axes[ldatm][:-2]
-            table = self.ld_photon_grid[ldatm][:-1] if intens_weighting == 'photon' else self.ld_energy_grid[ldatm][:-1]
+            table = self.ld_photon_grid[ldatm][...,-1] if intens_weighting == 'photon' else self.ld_energy_grid[ldatm][...,-1]
             req = ndpolator.tabulate((teffs, loggs))
 
         else:
@@ -2281,8 +2281,15 @@ class Passband:
         elif ld_func == 'power':
             ldints = 1-ld_coeffs[:,0]/5-ld_coeffs[:,1]/3-3.*ld_coeffs[:,2]/7-ld_coeffs[:,3]/2
         elif ld_func == 'interp':
-            axes = self.atm_axes[ldatm][:-1]
-            grid = self.ldint_photon_grid[ldatm] if intens_weighting == 'photon' else self.ldint_energy_grid[ldatm]
+            if ldatm == 'tmap_DA' or ldatm == 'tmap_DO':
+                axes = self.atm_axes[ldatm][:-2]
+                grid = self.ldint_photon_grid[ldatm][...,-1] if intens_weighting == 'photon' else self.ldint_energy_grid[ldatm][...,-1]
+                req = ndpolator.tabulate((teffs, loggs))
+
+            else:
+                axes = self.atm_axes[ldatm][:-1]
+                grid = self.ldint_photon_grid[ldatm] if intens_weighting == 'photon' else self.ldint_energy_grid[ldatm]
+
             ndp = ndpolator.Ndpolator(axes, grid)
 
             ldints = ndp.interp(req, extrapolation_method=ld_extrapolation_method, return_nanmask=False, raise_on_nans=raise_on_nans)
