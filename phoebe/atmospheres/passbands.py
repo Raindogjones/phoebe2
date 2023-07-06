@@ -48,6 +48,7 @@ _ldatms.remove('blackbody')
 _ldatms.remove('extern_atmx')
 _ldatms.remove('extern_planckint')
 
+
 # Global passband table. This dict should never be tinkered with outside
 # of the functions in this module; it might be nice to make it read-only
 # at some point.
@@ -1924,7 +1925,7 @@ class Passband:
         if atm not in _supported_atms:
             raise RuntimeError(f'atm={atm} is not supported.')
 
-        if ldatm not in _ldatms:
+        if ldatm not in _ldatms.append('none'):
             raise ValueError(f'ldatm={ldatm} is not supported.')
 
         if intens_weighting not in ['energy', 'photon']:
