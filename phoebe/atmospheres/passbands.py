@@ -1925,7 +1925,7 @@ class Passband:
         if atm not in _supported_atms:
             raise RuntimeError(f'atm={atm} is not supported.')
 
-        if ldatm not in _ldatms.append('none'):
+        if ldatm not in _ldatms and ldatm != 'none':
             raise ValueError(f'ldatm={ldatm} is not supported.')
 
         if intens_weighting not in ['energy', 'photon']:
@@ -2170,7 +2170,7 @@ class Passband:
         if atm not in _supported_atms:
             raise RuntimeError(f'atm={atm} is not supported.')
 
-        if ldatm not in _ldatms:
+        if ldatm not in _ldatms and ldatm != 'none':
             raise ValueError(f'ldatm={ldatm} is not supported.')
 
         raise_on_nans = True if atm_extrapolation_method == 'none' else False
