@@ -2041,8 +2041,9 @@ class Passband:
         # a temporary shortcut for testing purposes only:
         if atm == 'ck2004':
             ndp = self.ndp[f'imu@{intens_weighting}@{atm}']
+            req = ndp.tabulate((teffs, loggs, abuns, mus))
         elif atm == 'tmap_DA' or atm == 'tmap_DO':
-            axes = np.delete(self.atm_axes[atm],2)
+            axes = axes=(self.atm_axes[atm][0], self.atm_axes[atm][1], self.atm_axes[atm][3])
             grid = self.atm_photon_grid[atm][...,-1,:,:] if intens_weighting == 'photon' else self.atm_energy_grid[atm][...,-1,:,:]
             ndp = ndpolator.Ndpolator(axes, grid)
             req = ndp.tabulate((teffs, loggs, mus))
@@ -2052,7 +2053,7 @@ class Passband:
             ndp = ndpolator.Ndpolator(axes, grid)
             req = ndp.tabulate((teffs, loggs, abuns, mus))
 
-        req = ndp.tabulate((teffs, loggs, abuns, mus))
+
         log10_Imu, nanmask = ndp.interp(req, raise_on_nans=raise_on_nans, return_nanmask=True, extrapolation_method=atm_extrapolation_method)
 
         if ~np.any(nanmask):
