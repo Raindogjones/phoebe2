@@ -729,13 +729,13 @@ class Passband:
                     if f'{atm}:Imu' in self.content:
                         if atm in ['phoenix','ck2004']:
                             prefix = atm[:2]
-                        else if atm == 'tmap_sdO':
+                        elif atm == 'tmap_sdO':
                             prefix ='tmsdo'
-                        else if atm == 'tmap_DA':
+                        elif atm == 'tmap_DA':
                             prefix = 'tmda'
-                        else if atm =='tmap_DAO':
+                        elif atm =='tmap_DAO':
                             prefix = 'tmdao'
-                        else if atm == 'tmap_DO']:
+                        elif atm == 'tmap_DO':
                             prefix = 'tmdo'
                         self.atm_axes[atm] = (
                             np.array(list(hdul[f'{prefix}_teffs'].data['teff'])),
