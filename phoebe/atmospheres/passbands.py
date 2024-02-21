@@ -3172,19 +3172,19 @@ if __name__ == '__main__':
     pb.compute_ldints(ldatm='phoenix')
 
     pb.compute_intensities(atm='tmap_sdO', path='tables/tmap_sdO', impute=True, verbose=True)
-    pb.compute_ldcoeffs(ldatm='tmap_sdO')
+    pb.compute_ldcoeffs(ldatm='tmap_sdO',weighting='interval')
     pb.compute_ldints(ldatm='tmap_sdO')
 
     pb.compute_intensities(atm='tmap_DA', path='tables/tmap_DA', impute=True, verbose=True)
-    pb.compute_ldcoeffs(ldatm='tmap_DA')
+    pb.compute_ldcoeffs(ldatm='tmap_DA',weighting='interval')
     pb.compute_ldints(ldatm='tmap_DA')
 
     pb.compute_intensities(atm='tmap_DAO', path='tables/tmap_DAO', impute=True, verbose=True)
-    pb.compute_ldcoeffs(ldatm='tmap_DAO')
+    pb.compute_ldcoeffs(ldatm='tmap_DAO',weighting='interval')
     pb.compute_ldints(ldatm='tmap_DAO')
 
     pb.compute_intensities(atm='tmap_DO', path='tables/tmap_DO', impute=True, verbose=True)
-    pb.compute_ldcoeffs(ldatm='tmap_DO')
+    pb.compute_ldcoeffs(ldatm='tmap_DO',weighting='interval')
     pb.compute_ldints(ldatm='tmap_DO')
 
     pb.save('bolometric.fits')
@@ -3215,22 +3215,22 @@ if __name__ == '__main__':
 #    pb.compute_phoenix_reddening(path='tables/phoenix', verbose=True)
 
     pb.compute_intensities(atm='tmap_sdO', path='tables/tmap_sdO', include_extinction=True, impute=True, verbose=True)
-    pb.compute_ldcoeffs(ldatm='tmap_sdO')
+    pb.compute_ldcoeffs(ldatm='tmap_sdO',weighting='interval')
     pb.compute_ldints(ldatm='tmap_sdO')
 #    pb.compute_tmap_reddening(path='tables/tmap_sdO', verbose=True)
 
     pb.compute_intensities(atm='tmap_DA', path='tables/tmap_DA',     include_extinction=True, impute=True, verbose=True)
-    pb.compute_ldcoeffs(ldatm='tmap_DA')
+    pb.compute_ldcoeffs(ldatm='tmap_DA',weighting='interval')
     pb.compute_ldints(ldatm='tmap_DA')
 #    pb.compute_tmap_reddening(path='tables/tmap_DA', verbose=True)
 
     pb.compute_intensities(atm='tmap_DAO', path='tables/tmap_DAO',     include_extinction=True, impute=True, verbose=True)
-    pb.compute_ldcoeffs(ldatm='tmap_DAO')
+    pb.compute_ldcoeffs(ldatm='tmap_DAO',weighting='interval')
     pb.compute_ldints(ldatm='tmap_DAO')
 #    pb.compute_tmap_reddening(path='tables/tmap_DAO', verbose=True)
 
     pb.compute_intensities(atm='tmap_DO', path='tables/tmap_DO',     include_extinction=True, impute=True, verbose=True)
-    pb.compute_ldcoeffs(ldatm='tmap_DO')
+    pb.compute_ldcoeffs(ldatm='tmap_DO',weighting='interval')
     pb.compute_ldints(ldatm='tmap_DO')
 #    pb.compute_tmap_reddening(path='tables/tmap_DO', verbose=True)
 
